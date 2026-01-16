@@ -49,9 +49,9 @@ const Hero = () => {
 
             {/* --- LIVING BACKGROUND --- */}
             <div className="absolute inset-0 -z-20 pointer-events-none w-full h-full">
-                <div className="hero-blob absolute -top-[20%] -left-[10%] w-[800px] h-[800px] bg-purple-900/30 rounded-full blur-[120px] mix-blend-screen opacity-40"></div>
-                <div className="hero-blob absolute top-[30%] right-[-10%] w-[600px] h-[600px] bg-cyan-900/20 rounded-full blur-[100px] mix-blend-screen animate-pulse-slow" />
-                <div className="hero-blob absolute -bottom-[20%] left-[20%] w-[600px] h-[600px] bg-indigo-900/20 rounded-full blur-[120px] mix-blend-screen" />
+                <div className="hero-blob absolute -top-[20%] -left-[10%] w-[800px] h-[800px] bg-purple-900/30 rounded-full blur-[120px] mix-blend-screen opacity-40 will-change-transform"></div>
+                <div className="hero-blob absolute top-[30%] right-[-10%] w-[600px] h-[600px] bg-cyan-900/20 rounded-full blur-[100px] mix-blend-screen animate-pulse-slow will-change-transform" />
+                <div className="hero-blob absolute -bottom-[20%] left-[20%] w-[600px] h-[600px] bg-indigo-900/20 rounded-full blur-[120px] mix-blend-screen will-change-transform" />
 
                 {/* Seamless transition mask */}
                 <div className="absolute bottom-0 left-0 w-full h-[150px] bg-gradient-to-t from-[#0a0213] to-transparent"></div>
