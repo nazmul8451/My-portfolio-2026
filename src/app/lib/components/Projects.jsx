@@ -8,6 +8,7 @@ import project3 from '../../../assets/Blue Gradient Linktree Background.png'
 import project4 from '../../../assets/Figue.io - Typing Animation in Chat.png'
 import project5 from '../../../assets/second shot v2.png';
 import project6 from '../../../assets/sqlite_project.png';
+import project7 from '../../../assets/Dark Blossom.png';
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
@@ -40,9 +41,17 @@ const Projects = () => {
 
     const projects = [
         {
+            title: "Event Discovery App",
+            desc: "Gathering is a feature-rich event discovery and social engagement app designed to help users find, explore, and interact with events happening around them. In this project, I focused on implementing key frontend features including trending and nearby event discovery, category-based filtering, interactive map views with real-time event locations, and a save/bookmark system. I also contributed to building real-time in-app chat, allowing users to connect and communicate seamlessly. The app emphasizes user-friendly UI/UX and dynamic interaction, making event exploration engaging and intuitive.",
+            img: project7,
+            github: "https://github.com/nazmul8451/Event-Discovery-App.git",
+            live: "#",
+            details: "#",
+        },
+        {
             title: "Online Grocarys App",
             desc: "The Fruit Ordering App is a beautifully designed and responsive mobile application built using Flutter, Dart, and Provider for state management. This project focuses on creating a smooth, modern, and user-friendly interface that allows users to browse, view, and order fresh fruits online.",
-            img: project1,
+            img: project2,
             github: "https://github.com/nazmul8451/Online-Grocary-App",
             live: "#",
             details: "#",
