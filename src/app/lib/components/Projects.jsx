@@ -9,6 +9,7 @@ import project4 from '../../../assets/Figue.io - Typing Animation in Chat.png'
 import project5 from '../../../assets/second shot v2.png';
 import project6 from '../../../assets/sqlite_project.png';
 import project7 from '../../../assets/Dark Blossom.png';
+import project8 from '../../../assets/photopia_cover.png';
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
@@ -95,6 +96,15 @@ const Projects = () => {
             img: project6,
             tech: ["Flutter", "SQLite", "Local Storage"],
             github: "https://github.com/nazmul8451/SQLite-CRUD-APP.git",
+            live: "#",
+        },
+        {
+            title: "Photopia - Moment Marketplace",
+            category: "Platform",
+            desc: "A dedicated marketplace for photographers to showcase and sell their captured moments.",
+            img: project8,
+            tech: ["Flutter", "Firebase", "Stripe"],
+            github: "https://github.com/nazmul8451/Photopia-MomentMarketplace.git",
             live: "#",
         },
     ];
