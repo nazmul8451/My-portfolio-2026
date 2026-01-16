@@ -234,8 +234,7 @@ const SkillNode = ({ skill, radius, angle, index }) => {
                     </div>
                 </Html>
             </group>
-            {/* Connection Line - Fixed Prop Mismatch */}
-            <ConnectionLine start={new THREE.Vector3(0, 0, 0)} endRef={groupRef} color={skill.color} />
+            {/* Connection Line removed as per user request */}
         </>
     );
 };
@@ -255,16 +254,7 @@ const Hero3D = () => {
                 {/* Center Photo */}
                 <CentralPhoto />
 
-                {/* Orbiting Icons */}
-                {skills.map((skill, i) => (
-                    <SkillNode
-                        key={i}
-                        skill={skill}
-                        index={i}
-                        total={skills.length}
-                        brainRef={brainRef}
-                    />
-                ))}
+                {/* Orbiting Icons Removed as per user request */}
 
                 <OrbitControls
                     enableZoom={false}

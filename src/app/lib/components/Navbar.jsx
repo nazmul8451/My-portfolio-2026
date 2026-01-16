@@ -18,7 +18,7 @@ const Navbar = () => {
 
                 <div className="text-2xl font-bold tracking-wide">
                     <a href="#home">
-                        <Image src={logo} width={60} height={50} className="w-[60px] sm:w-[50px] object-contain" alt="logo"></Image>
+                        <Image src={logo} width={80} height={70} className="w-[80px] sm:w-[70px] object-contain" alt="logo"></Image>
                     </a>
                 </div>
 

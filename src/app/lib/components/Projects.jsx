@@ -14,31 +14,29 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay, EffectCoverflow } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
 const Projects = () => {
     const sectionRef = useRef(null);
     const titleRef = useRef(null);
-    const gridRef = useRef(null);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 80%",
-                    end: "bottom 20%",
-                    toggleActions: "play none none reverse",
-                }
-            });
-
-            tl.fromTo(titleRef.current,
+            gsap.fromTo(titleRef.current,
                 { opacity: 0, y: -50 },
-                { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
-            )
-                .fromTo(".project-card",
-                    { opacity: 0, y: 100, scale: 0.9 },
-                    { opacity: 1, y: 0, scale: 1, duration: 0.8, stagger: 0.1, ease: "back.out(1.2)" },
-                    "-=0.5"
-                );
+                {
+                    opacity: 1, y: 0, duration: 1, ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top 80%",
+                    }
+                }
+            );
         }, sectionRef);
 
         return () => ctx.revert();
@@ -78,7 +76,7 @@ const Projects = () => {
             desc: "Smart conversational AI interface with typing animations and real-time response handling.",
             img: project4,
             tech: ["Flutter", "OpenAI API", "Animation"],
-            github: "https://github.com/nazmul8451/Task-Manager", // Placeholder link from original
+            github: "https://github.com/nazmul8451/Task-Manager", // Placeholder link
             live: "#",
         },
         {
@@ -106,7 +104,7 @@ const Projects = () => {
             <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
 
                 {/* Header Section */}
-                <div ref={titleRef} className="text-center mb-16 lg:mb-24">
+                <div ref={titleRef} className="text-center mb-12">
                     <h1 className="text-4xl lg:text-6xl font-extrabold tracking-tight mb-4">
                         Project <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 filter drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]">Showcase</span>
                     </h1>
@@ -115,61 +113,95 @@ const Projects = () => {
                     </p>
                 </div>
 
-                {/* Grid Section */}
-                <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-                    {projects.map((p, i) => (
-                        <div key={i} className="project-card group relative rounded-[30px] bg-white/5 border border-white/10 overflow-hidden hover:border-purple-500/50 transition-all duration-500 hover:shadow-[0_0_50px_rgba(168,85,247,0.15)] flex flex-col h-full">
+                {/* Swiper Slider */}
+                <div className="relative w-full">
+                    <Swiper
+                        modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
+                        spaceBetween={40}
+                        slidesPerView={1}
+                        breakpoints={{
+                            640: { slidesPerView: 1 },
+                            1024: { slidesPerView: 2 }, // As requested: Two projects show
+                        }}
+                        navigation={{
+                            nextEl: '.custom-next',
+                            prevEl: '.custom-prev',
+                        }}
+                        pagination={{ clickable: true, dynamicBullets: true }}
+                        autoplay={{ delay: 3000, disableOnInteraction: false }}
+                        loop={true}
+                        className="pb-16 px-4"
+                    >
+                        {projects.map((p, i) => (
+                            <SwiperSlide key={i} className="h-auto">
+                                <div className="project-card group relative rounded-[30px] bg-white/5 border border-white/10 overflow-hidden hover:border-purple-500/50 transition-all duration-500 hover:shadow-[0_0_50px_rgba(168,85,247,0.15)] flex flex-col h-full min-h-[500px]">
 
-                            {/* Image Container with Overlay */}
-                            <div className="relative h-[250px] overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#030014] via-transparent to-transparent z-10 opacity-80" />
-                                <Image
-                                    src={p.img || project1}
-                                    alt={p.title}
-                                    fill
-                                    className="object-cover transform group-hover:scale-110 transition-transform duration-700"
-                                />
-                                {/* Category Badge */}
-                                <div className="absolute top-4 left-4 z-20 px-4 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-xs font-semibold text-purple-300">
-                                    {p.category}
+                                    {/* Image Container with Overlay */}
+                                    <div className="relative h-[280px] overflow-hidden">
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[#030014] via-transparent to-transparent z-10 opacity-60" />
+                                        <Image
+                                            src={p.img || project1}
+                                            alt={p.title}
+                                            fill
+                                            className="object-cover transform group-hover:scale-110 transition-transform duration-700"
+                                        />
+                                        {/* Category Badge */}
+                                        <div className="absolute top-4 left-4 z-20 px-4 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-xs font-semibold text-purple-300">
+                                            {p.category}
+                                        </div>
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="p-8 flex flex-col flex-grow relative z-20">
+                                        <h3 className="text-3xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-cyan-400 transition-all">
+                                            {p.title}
+                                        </h3>
+                                        <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-grow">
+                                            {p.desc}
+                                        </p>
+
+                                        {/* Tech Stack */}
+                                        <div className="flex flex-wrap gap-2 mb-8">
+                                            {p.tech.map((tech, t) => (
+                                                <span key={t} className="px-3 py-1 rounded-md bg-white/5 text-[11px] uppercase tracking-wider text-gray-300 border border-white/5 group-hover:border-purple-500/30 transition-colors">
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                        </div>
+
+                                        {/* Buttons */}
+                                        <div className="flex items-center justify-between gap-4 mt-auto">
+                                            <a href={p.live} className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 px-4 py-3 rounded-xl text-white font-semibold text-sm hover:shadow-lg hover:shadow-purple-500/25 transition-all active:scale-95">
+                                                <FaExternalLinkAlt /> Live Demo
+                                            </a>
+                                            <a href={p.github} className="flex-1 flex items-center justify-center gap-2 bg-white/5 border border-white/10 px-4 py-3 rounded-xl text-white font-semibold text-sm hover:bg-white/10 hover:border-white/20 transition-all active:scale-95">
+                                                <FaGithub className="text-lg" /> Source
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    {/* Hover Glow Effect */}
+                                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                                 </div>
-                            </div>
+                            </SwiperSlide>
+                        ))}
 
-                            {/* Content */}
-                            <div className="p-6 flex flex-col flex-grow relative z-20">
-                                <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-cyan-400 transition-all">
-                                    {p.title}
-                                </h3>
-                                <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-grow">
-                                    {p.desc}
-                                </p>
+                        {/* Custom Navigation Buttons */}
+                        <div className="flex items-center justify-center gap-4 mt-8 z-20 relative">
+                            <button className="custom-prev w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-purple-600 hover:border-purple-500 transition-all duration-300 active:scale-90 group">
+                                <FaChevronLeft className="group-hover:-translate-x-1 transition-transform" />
+                            </button>
 
-                                {/* Tech Stack */}
-                                <div className="flex flex-wrap gap-2 mb-6">
-                                    {p.tech.map((tech, t) => (
-                                        <span key={t} className="px-3 py-1 rounded-md bg-white/5 text-[10px] uppercase tracking-wider text-gray-300 border border-white/5 group-hover:border-purple-500/30 transition-colors">
-                                            {tech}
-                                        </span>
-                                    ))}
-                                </div>
+                            {/* Pagination Dots Container (Optional custom wrapper or let swiper handle it) */}
+                            {/* <div className="swiper-pagination !relative !bottom-0 !w-auto"></div> */}
 
-                                {/* Buttons */}
-                                <div className="flex items-center justify-between gap-4 mt-auto">
-                                    <a href={p.live} className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 px-4 py-3 rounded-xl text-white font-semibold text-sm hover:shadow-lg hover:shadow-purple-500/25 transition-all active:scale-95">
-                                        <FaExternalLinkAlt /> Live Demo
-                                    </a>
-                                    <a href={p.github} className="flex-1 flex items-center justify-center gap-2 bg-white/5 border border-white/10 px-4 py-3 rounded-xl text-white font-semibold text-sm hover:bg-white/10 hover:border-white/20 transition-all active:scale-95">
-                                        <FaGithub className="text-lg" /> Source
-                                    </a>
-                                </div>
-                            </div>
-
-                            {/* Hover Glow Effect */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                            <button className="custom-next w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-purple-600 hover:border-purple-500 transition-all duration-300 active:scale-90 group">
+                                <FaChevronRight className="group-hover:translate-x-1 transition-transform" />
+                            </button>
                         </div>
-                    ))}
-                </div>
 
+                    </Swiper>
+                </div>
             </div>
         </div>
     );
