@@ -250,8 +250,7 @@ const Hero3D = () => {
                 <directionalLight position={[2, 5, 2]} intensity={1} color="#a855f7" />
                 <pointLight position={[-2, -2, 2]} intensity={2} color="#00bcd4" />
 
-                {/* Background Particles */}
-                <Sparkles count={150} scale={10} size={2} speed={0.4} opacity={0.5} noise={0.2} color="#a855f7" />
+
 
                 {/* Center Photo */}
                 <CentralPhoto />
