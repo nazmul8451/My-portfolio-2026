@@ -5,6 +5,7 @@ import { FaFacebookF, FaGithub, FaLinkedinIn } from "react-icons/fa";
 import TextType from '../../../components/TextType';
 import Hero3D from './Hero3D';
 import gsap from 'gsap';
+import rimonImage from '../../../assets/rimon.png';
 
 const Hero = () => {
     const heroRef = useRef(null);
@@ -30,6 +31,7 @@ const Hero = () => {
                 "-=0.3"
             );
 
+
         gsap.to(".hero-blob", {
             y: "random(-20, 20)",
             x: "random(-20, 20)",
@@ -43,23 +45,23 @@ const Hero = () => {
     }, []);
 
     return (
-        <div className='w-full mx-auto mt-[40px] px-6 lg:px-24 relative overflow-visible'>
+        <div id="home" className='w-full relative overflow-hidden min-h-screen flex items-center'>
 
             {/* --- LIVING BACKGROUND --- */}
-            <div className="absolute inset-0 -z-20 pointer-events-none overflow-hidden h-[120%] -top-[10%]">
-                <div className="hero-blob absolute -top-[300px] -left-[300px] w-[900px] h-[900px] bg-gradient-to-br from-purple-900/40 via-indigo-900/40 to-black rounded-full blur-[120px] mix-blend-screen opacity-50"></div>
-                <div className="hero-blob absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-cyan-900/20 rounded-full blur-[100px] mix-blend-screen animate-pulse-slow" />
-                <div className="hero-blob absolute bottom-[-10%] left-[20%] w-[500px] h-[500px] bg-purple-900/20 rounded-full blur-[100px] mix-blend-screen" />
+            <div className="absolute inset-0 -z-20 pointer-events-none w-full h-full">
+                <div className="hero-blob absolute -top-[20%] -left-[10%] w-[800px] h-[800px] bg-purple-900/30 rounded-full blur-[120px] mix-blend-screen opacity-40"></div>
+                <div className="hero-blob absolute top-[30%] right-[-10%] w-[600px] h-[600px] bg-cyan-900/20 rounded-full blur-[100px] mix-blend-screen animate-pulse-slow" />
+                <div className="hero-blob absolute -bottom-[20%] left-[20%] w-[600px] h-[600px] bg-indigo-900/20 rounded-full blur-[120px] mix-blend-screen" />
 
                 {/* Seamless transition mask */}
-                <div className="absolute bottom-0 left-0 w-full h-[200px] bg-gradient-to-t from-[#0a0213] via-[#0a0213]/80 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 w-full h-[150px] bg-gradient-to-t from-[#0a0213] to-transparent"></div>
             </div>
 
-            <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-0 lg:gap-10 min-h-[600px] relative z-10 pb-20">
+            <div className="w-full max-w-[1600px] mx-auto px-6 lg:px-12 pt-[100px] pb-12 grid lg:grid-cols-2 gap-20 lg:gap-32 items-center relative z-10">
 
                 {/* Left Side: Text Content */}
-                <div className="flex-1 text-center lg:text-start z-10 mt-10 lg:mt-0">
-                    <div ref={textRef} className="text-white flex flex-col gap-4 lg:gap-6">
+                <div className="text-center lg:text-start order-2 lg:order-1 flex flex-col justify-center">
+                    <div ref={textRef} className="text-white flex flex-col gap-6 lg:pr-10">
 
                         <div className="inline-block px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-900/10 backdrop-blur-sm w-fit mx-auto lg:mx-0 shadow-[0_0_15px_rgba(168,85,247,0.3)]">
                             <span className="text-purple-300 text-sm font-medium tracking-wide">Available for Work</span>
@@ -114,11 +116,34 @@ const Hero = () => {
                     </div>
                 </div>
 
-                {/* Right Side: 3D Element */}
-                <div className="flex-1 w-full lg:min-w-[500px] flex justify-center lg:justify-end -mt-10 lg:mt-0 relative">
-                    {/* 3D Brain - Top Layer */}
-                    <div className="relative z-20 w-full hover:scale-105 transition-transform duration-700 ease-out cursor-none">
-                        <Hero3D />
+                {/* Right Side: User Image */}
+                <div className="flex justify-center lg:justify-end order-1 lg:order-2 relative group pl-0 lg:pl-10">
+                    {/* Glowing Background Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/30 to-cyan-500/30 blur-[80px] rounded-full scale-90 group-hover:scale-100 transition-transform duration-700"></div>
+
+                    {/* Image Container with premium border */}
+                    <div className="relative w-[320px] h-[320px] sm:w-[450px] sm:h-[450px] lg:w-[500px] lg:h-[500px] rounded-full p-3 bg-gradient-to-br from-white/10 to-white/5 border border-white/10 backdrop-blur-sm shadow-[0_0_40px_rgba(168,85,247,0.3)] group-hover:shadow-[0_0_70px_rgba(168,85,247,0.5)] transition-all duration-500">
+                        {/* Inner Ring */}
+                        <div className="w-full h-full rounded-full overflow-hidden relative border-[6px] border-purple-500/20 group-hover:border-purple-500/50 transition-colors duration-500">
+                            <Image
+                                src={rimonImage}
+                                alt="Rimon Islam"
+                                fill
+                                className="object-cover scale-110 group-hover:scale-105 transition-transform duration-700 ease-out"
+                                priority
+                            />
+                            {/* Overlay Gradient for better blending */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 via-transparent to-transparent opacity-50"></div>
+                        </div>
+
+                        {/* Floating Tech Badge */}
+                        <div className="absolute bottom-12 left-0 lg:-left-4 bg-[#0a0213]/90 backdrop-blur-xl border border-purple-500/30 px-5 py-2.5 rounded-2xl flex items-center gap-3 shadow-2xl animate-bounce-slow">
+                            <div className="relative">
+                                <div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></div>
+                                <div className="absolute inset-0 w-2.5 h-2.5 rounded-full bg-green-500 animate-ping opacity-75"></div>
+                            </div>
+                            <span className="text-sm text-gray-200 font-medium tracking-wide">Open to Work</span>
+                        </div>
                     </div>
                 </div>
 
