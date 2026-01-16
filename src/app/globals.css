@@ -114,13 +114,15 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px; /* Adjust based on navbar height */
+  scroll-padding-top: 80px;
+  /* Adjust based on navbar height */
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

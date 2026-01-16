@@ -22,12 +22,15 @@ const geistMono = Geist_Mono({
 
 
 
+import ShootingStars from "./lib/components/ShootingStars";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-arp="" className={`${preahvihear.variable}`}>
 
       <body className="antialiased font-sans">
         <div className="bg-[#0a0213] min-h-screen font-[var(--font-preahvihear)]">
+          <ShootingStars />
           <ContextProvider>
             {children}
           </ContextProvider>

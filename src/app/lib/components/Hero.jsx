@@ -5,7 +5,6 @@ import { FaFacebookF, FaGithub, FaLinkedinIn } from "react-icons/fa";
 import TextType from '../../../components/TextType';
 import Hero3D from './Hero3D';
 import gsap from 'gsap';
-import MyPhoto from '../../../assets/my_photo.jpg';
 
 const Hero = () => {
     const heroRef = useRef(null);
@@ -34,10 +33,21 @@ const Hero = () => {
     }, []);
 
     return (
-        <div className='max-w-[1400px] mx-auto mt-[40px] mb-[40px] px-4 sm:px-6 relative overflow-visible'>
-            {/* Dark Premium Background Effects */}
-            <div className="absolute top-[-100px] right-[-100px] w-[600px] h-[600px] bg-purple-900/20 rounded-full blur-[120px] -z-10 animate-pulse mix-blend-screen" />
-            <div className="absolute bottom-[-100px] left-[-200px] w-[500px] h-[500px] bg-indigo-900/20 rounded-full blur-[120px] -z-10 animate-pulse delay-1000 mix-blend-screen" />
+        <div className='w-full mx-auto mt-[40px] mb-[40px] px-6 lg:px-24 relative overflow-visible'>
+
+            {/* --- COSMIC BACKGROUND VIBE --- */}
+            <div className="absolute inset-0 -z-20 pointer-events-none overflow-hidden h-[120%] -top-[10%]">
+                {/* 1. Base handled globally now */}
+
+                {/* 2. The 'Event Horizon' Light Source (Top Left) */}
+                <div className="absolute -top-[300px] -left-[300px] w-[900px] h-[900px] bg-gradient-to-br from-white via-purple-500 to-indigo-900 rounded-full blur-[150px] opacity-40 mix-blend-screen animate-pulse-slow"></div>
+
+                {/* 3. Grid handled globally now */}
+
+                {/* 4. Additional Ambient Nebulas */}
+                <div className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-cyan-900/20 rounded-full blur-[100px] mix-blend-screen" />
+                <div className="absolute bottom-[-10%] left-[20%] w-[500px] h-[500px] bg-purple-900/10 rounded-full blur-[100px] mix-blend-screen" />
+            </div>
 
             <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-0 lg:gap-10 min-h-[600px] relative z-10">
 
@@ -97,26 +107,11 @@ const Hero = () => {
                     </div>
                 </div>
 
-                {/* Right Side: 3D Element & Background Photo */}
+                {/* Right Side: 3D Element */}
                 <div className="flex-1 w-full lg:min-w-[500px] flex justify-center lg:justify-end -mt-10 lg:mt-0 relative">
                     {/* 3D Brain - Top Layer */}
                     <div className="relative z-20 w-full">
                         <Hero3D />
-                    </div>
-
-                    {/* Rimon Photo - Background Layer (Cinematic) */}
-                    <div className="absolute inset-0 z-0 opacity-20 lg:opacity-30 mix-blend-luminosity lg:right-[-50px] pointer-events-none">
-                        <Image
-                            src={MyPhoto}
-                            alt="Background Profile"
-                            fill
-                            className="object-cover object-center lg:object-contain grayscale"
-                            style={{
-                                maskImage: 'radial-gradient(circle at center, black 30%, transparent 80%)',
-                                WebkitMaskImage: 'radial-gradient(circle at center, black 30%, transparent 80%)',
-                                transform: 'scaleX(-1)'
-                            }}
-                        />
                     </div>
                 </div>
 
