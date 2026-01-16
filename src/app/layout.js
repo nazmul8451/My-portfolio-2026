@@ -2,6 +2,8 @@
 import { Geist, Geist_Mono, Preahvihear } from "next/font/google";
 import "./globals.css";
 import { ContextProvider } from "@/context/ContextProvider";
+import CustomCursor from "./lib/components/CustomCursor";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,15 +28,12 @@ const geistMono = Geist_Mono({
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-arp="" className={`${preahvihear.variable}`}>
-
-      <body className="antialiased font-sans">
-        <div className="bg-[#0a0213] min-h-screen font-[var(--font-preahvihear)]">
-
-          <ContextProvider>
-            {children}
-          </ContextProvider>
-        </div>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${preahvihear.variable}`}>
+      <body className="antialiased font-sans bg-[#0a0213] text-gray-100 selection:bg-purple-500/30 selection:text-purple-200">
+        <ContextProvider>
+          <CustomCursor />
+          {children}
+        </ContextProvider>
       </body>
     </html>
   );
