@@ -43,6 +43,17 @@ const Projects = () => {
                     }
                 }
             );
+
+            gsap.fromTo(".project-card",
+                { opacity: 0, y: 50 },
+                {
+                    opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top 60%",
+                    }
+                }
+            );
         }, sectionRef);
 
         return () => ctx.revert();

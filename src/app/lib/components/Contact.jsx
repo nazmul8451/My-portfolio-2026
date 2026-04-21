@@ -1,13 +1,62 @@
 "use client";
-import React from "react";
-import borderImge from '../../../assets/border.png'
+import React, { useEffect, useRef } from "react";
+import borderImge from '../../../assets/border.png';
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const Contact = () => {
+    const sectionRef = useRef(null);
+    const titleRef = useRef(null);
+    const formRef = useRef(null);
+    const textRef = useRef(null);
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.fromTo(titleRef.current,
+                { opacity: 0, y: -30 },
+                {
+                    opacity: 1, y: 0, duration: 0.8,
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top 80%",
+                    }
+                }
+            );
+
+            gsap.fromTo(formRef.current,
+                { opacity: 0, x: -50 },
+                {
+                    opacity: 1, x: 0, duration: 0.8,
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top 70%",
+                    }
+                }
+            );
+
+            gsap.fromTo(textRef.current,
+                { opacity: 0, x: 50 },
+                {
+                    opacity: 1, x: 0, duration: 0.8,
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top 70%",
+                    }
+                }
+            );
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <section className="w-full max-w-[1400px] mx-auto px-2">
+        <section ref={sectionRef} className="w-full max-w-[1400px] mx-auto px-2">
 
 
-            <div className=" relative w-[330px] sm:w-[500px] mx-auto">
+            <div ref={titleRef} className=" relative w-[330px] sm:w-[500px] mx-auto">
 
                 <div className="flex justify-center  ">
 
@@ -23,7 +72,7 @@ const Contact = () => {
                 <div className="max-w-[1500px] w-full grid grid-cols-1 md:grid-cols-2 gap-10">
 
 
-                    <div className="bg-white/10 backdrop-blur-lg border border-purple-500 rounded-2xl p-8 flex flex-col gap-6 shadow-lg">
+                    <div ref={formRef} className="bg-white/10 backdrop-blur-lg border border-purple-500 rounded-2xl p-8 flex flex-col gap-6 shadow-lg">
                         <h2 className="text-3xl font-bold text-white mb-4">Get in Touch</h2>
 
                         <input
@@ -49,7 +98,7 @@ const Contact = () => {
                         </button>
                     </div>
 
-                    <div className="flex flex-col justify-center text-white">
+                    <div ref={textRef} className="flex flex-col justify-center text-white">
 
 
 

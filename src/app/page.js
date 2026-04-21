@@ -8,6 +8,7 @@ import Hero from "./lib/components/Hero";
 import About from "./lib/components/About";
 import Skill from "./lib/components/Skill";
 import Projects from "./lib/components/Projects";
+import Experience from "./lib/components/Experience";
 import Contact from "./lib/components/Contact";
 import Footer from "./lib/components/Footer";
 
@@ -50,13 +51,16 @@ export default function Home() {
       <div ref={(el) => (sectionsRef.current[3] = el)} className="mt-20 sm:mt-20" id="skill">
         <Skill />
       </div>
-      <div ref={(el) => (sectionsRef.current[4] = el)} id="project">
+      <div ref={(el) => (sectionsRef.current[4] = el)} id="experience">
+        <Experience />
+      </div>
+      <div ref={(el) => (sectionsRef.current[5] = el)} id="project">
         <Projects />
       </div>
-      <div ref={(el) => (sectionsRef.current[5] = el)} id="contact">
+      <div ref={(el) => (sectionsRef.current[6] = el)} id="contact">
         <Contact />
       </div>
-      <div ref={(el) => (sectionsRef.current[6] = el)}>
+      <div ref={(el) => (sectionsRef.current[7] = el)}>
         <Footer />
       </div>
     </div>

@@ -37,7 +37,7 @@ const Navbar = () => {
                 </div>
 
                 <ul className="hidden md:flex items-center gap-8 text-lg font-medium text-gray-300">
-                    {["Skill", "Project", "About", "Contact"].map((item) => (
+                    {["About", "Skill", "Experience", "Project", "Contact"].map((item) => (
                         <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-purple-400 duration-300 cursor-pointer transition-colors relative group">
                             {item}
                             <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
@@ -68,7 +68,7 @@ const Navbar = () => {
                             transition={{ duration: 0.3 }}
                             className="absolute top-[80px] left-0 w-full bg-[#1A0B2E]/95 backdrop-blur-xl flex flex-col items-center gap-8 py-10 md:hidden shadow-2xl border-b border-white/10"
                         >
-                            {["Skill", "Project", "About", "Contact"].map((item) => (
+                            {["About", "Skill", "Experience", "Project", "Contact"].map((item) => (
                                 <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setOpen(false)} className="text-xl font-medium text-gray-200 hover:text-purple-400 duration-200 cursor-pointer">
                                     {item}
                                 </a>

@@ -1,24 +1,47 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { FaFacebook, FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import logo from "./../../../assets/Letter-R-Logo-Template-Design-icon-Graphics-9132151-1-1-580x387-removebg-preview.png";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
+    const footerRef = useRef(null);
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.fromTo(".footer-col",
+                { opacity: 0, y: 30 },
+                {
+                    opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: footerRef.current,
+                        start: "top 90%",
+                    }
+                }
+            );
+        }, footerRef);
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <div className="mt-[50px]">
+        <div ref={footerRef} className="mt-[50px]">
             <footer className="bg-[#1A0B2E] text-gray-300 py-10 px-6 sm:px-1">
                 <div className="max-w-[1400px] mx-auto grid grid-cols-1 sm:grid-cols-6 gap-8 items-start">
 
                
-                    <div className="sm:col-span-1 flex flex-col items-start">
+                    <div className="footer-col sm:col-span-1 flex flex-col items-start">
                         <Image src={logo} width={100} height={15} alt="logo" />
                         <p className="text-sm text-gray-400 mt-2">
                             Building beautiful, high-performance Flutter mobile apps.
                         </p>
                     </div>
 
-                    <div>
+                    <div className="footer-col">
                         <h3 className="text-white font-semibold mb-3">About</h3>
                         <ul className="space-y-2 text-sm">
                             <li>Flutter App Developer</li>
@@ -29,7 +52,7 @@ const Footer = () => {
                     </div>
 
                
-                    <div>
+                    <div className="footer-col">
                         <h3 className="text-white font-semibold mb-3">Projects</h3>
                         <ul className="space-y-2 text-sm">
                             <li>Flutter E-Commerce App</li>
@@ -40,7 +63,7 @@ const Footer = () => {
                     </div>
 
                
-                    <div>
+                    <div className="footer-col">
                         <h3 className="text-white font-semibold mb-3">Services</h3>
                         <ul className="space-y-2 text-sm">
                             <li>Flutter App Development</li>
@@ -50,7 +73,7 @@ const Footer = () => {
                         </ul>
                     </div>
 
-                    <div>
+                    <div className="footer-col">
                         <h3 className="text-white font-semibold mb-3">Contact</h3>
                         <ul className="space-y-2 text-sm">
                             <li>rimon1234567@gmail.com</li>
@@ -65,7 +88,7 @@ const Footer = () => {
                     </div>
 
            
-                    <div className="sm:col-span-1 flex sm:justify-end items-center gap-5 mt-4 sm:mt-0">
+                    <div className="footer-col sm:col-span-1 flex sm:justify-end items-center gap-5 mt-4 sm:mt-0">
                         <a
                             href="https://github.com/nazmul8451"
                             className="text-gray-400 hover:text-white text-xl transition"
