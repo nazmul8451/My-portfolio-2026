@@ -54,7 +54,11 @@ const Footer = () => {
                         <h3 className="text-white font-semibold mb-3">Contact</h3>
                         <ul className="space-y-2 text-sm">
                             <li>rimon1234567@gmail.com</li>
-                            <li>Hire for Projects</li>
+                            <li>
+                                <a href="https://www.fiverr.com/rimonislam371/do-website-and-mobile-app-development-ios-app-development-as-flutter-developer?context_referrer=tailored_homepage_perseus&source=recently_viewed_gigs&ref_ctx_id=ae17ca95ed344471a42f31afbeff1c18&context=recommendation&pckg_id=1&pos=1&context_alg=recently_viewed&seller_online=true&imp_id=47004e4c-e398-4ba2-9fa3-77e650715786" target="_blank" rel="noopener noreferrer" className="hover:text-purple-400 transition">
+                                    Hire for Projects
+                                </a>
+                            </li>
                             <li>Collaborate on Open Source</li>
                             <li>Let’s Build Together</li>
                         </ul>

@@ -68,7 +68,7 @@ const Hero = () => {
                         </div>
 
                         <h1 className="text-4xl lg:text-7xl font-bold leading-tight font-[family-name:var(--font-preahvihear)]">
-                            Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 filter drop-shadow-[0_0_10px_rgba(192,132,252,0.3)]">Rimon islam</span>
+                            Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 filter drop-shadow-[0_0_10px_rgba(192,132,252,0.3)]">Nazmul Islam Rimon</span>
                         </h1>
 
                         <div className="text-2xl lg:text-4xl text-gray-200 font-semibold h-[40px] lg:h-[60px]">
@@ -88,11 +88,11 @@ const Hero = () => {
 
                         {/* Buttons */}
                         <div ref={buttonsRef} className='flex sm:justify-start justify-center items-center mt-6 gap-4'>
-                            <button className="px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 hover:scale-105 active:scale-95 duration-300 rounded-full font-bold text-white shadow-[0_0_20px_rgba(147,51,234,0.5)] border border-purple-400/20 relative overflow-hidden group">
+                            <a href="https://www.fiverr.com/rimonislam371/do-website-and-mobile-app-development-ios-app-development-as-flutter-developer?context_referrer=tailored_homepage_perseus&source=recently_viewed_gigs&ref_ctx_id=ae17ca95ed344471a42f31afbeff1c18&context=recommendation&pckg_id=1&pos=1&context_alg=recently_viewed&seller_online=true&imp_id=47004e4c-e398-4ba2-9fa3-77e650715786" target="_blank" rel="noopener noreferrer" className="px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 hover:scale-105 active:scale-95 duration-300 rounded-full font-bold text-white shadow-[0_0_20px_rgba(147,51,234,0.5)] border border-purple-400/20 relative overflow-hidden group">
                                 <span className="relative z-10">Hire Me</span>
                                 <div className="absolute inset-0 bg-white/20 translate-x-[-100%] skew-x-12 group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
-                            </button>
-                            <a href="https://drive.google.com/file/d/188JmJQhNTj-kGoTjHyop4Y4yvFcAlyGU/view?usp=sharing" target="_blank"
+                            </a>
+                            <a href="https://drive.google.com/file/d/1tSDtNTtiAnwEgDxgW8qF3zcd5MqueDav/view?usp=sharing" target="_blank"
                                 className="px-8 py-3 border border-gray-700 hover:border-purple-500 hover:text-purple-400 duration-300 rounded-full font-medium text-gray-300 transition-colors bg-white/5 backdrop-blur-sm relative overflow-hidden group">
                                 <span className="relative z-10">Download CV</span>
                                 <div className="absolute inset-0 bg-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

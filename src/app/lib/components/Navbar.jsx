@@ -44,7 +44,7 @@ const Navbar = () => {
                         </a>
                     ))}
 
-                    <a href="https://drive.google.com/file/d/188JmJQhNTj-kGoTjHyop4Y4yvFcAlyGU/view?usp=sharing" target="_blank">
+                    <a href="https://drive.google.com/file/d/1tSDtNTtiAnwEgDxgW8qF3zcd5MqueDav/view?usp=sharing" target="_blank">
                         <button className="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white px-6 py-2.5 rounded-full shadow-[0_0_15px_rgba(147,51,234,0.3)] transform hover:scale-105 duration-300 transition-all border border-purple-400/20">
                             <FiDownload /> Resume
                         </button>
@@ -73,9 +73,11 @@ const Navbar = () => {
                                     {item}
                                 </a>
                             ))}
-                            <button className="flex items-center gap-2 bg-purple-600 px-8 py-3 rounded-full font-bold shadow-lg text-white">
-                                <FiDownload /> Download Resume
-                            </button>
+                            <a href="https://drive.google.com/file/d/1tSDtNTtiAnwEgDxgW8qF3zcd5MqueDav/view?usp=sharing" target="_blank" className="w-full flex justify-center">
+                                <button className="flex items-center gap-2 bg-purple-600 px-8 py-3 rounded-full font-bold shadow-lg text-white">
+                                    <FiDownload /> Download Resume
+                                </button>
+                            </a>
                         </motion.div>
                     )}
                 </AnimatePresence>

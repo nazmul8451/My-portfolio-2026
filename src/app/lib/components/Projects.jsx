@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import project1 from '../../../assets/Cover.png'
@@ -12,6 +12,7 @@ import project7 from '../../../assets/Dark Blossom.png';
 import project8 from '../../../assets/photopia_cover.png';
 import project9 from '../../../assets/Frame 34.png';
 import project10 from '../../../assets/Desktop - 2.png';
+import project11 from '../../../assets/Screenshot 2026-04-21 021157.png';
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
@@ -20,6 +21,15 @@ gsap.registerPlugin(ScrollTrigger);
 const Projects = () => {
     const sectionRef = useRef(null);
     const titleRef = useRef(null);
+    const [showToast, setShowToast] = useState(false);
+
+    const handleLiveClick = (e, live) => {
+        if (live === "#") {
+            e.preventDefault();
+            setShowToast(true);
+            setTimeout(() => setShowToast(false), 5000); // 5 seconds duration
+        }
+    };
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -73,6 +83,15 @@ const Projects = () => {
             img: project8,
             tech: ["Flutter", "Firebase", "Stripe"],
             github: "https://github.com/nazmul8451/Photopia-MomentMarketplace.git",
+            live: "#",
+        },
+        {
+            title: "ClipFrame - Social Scheduler",
+            category: "Social Media / Utility",
+            desc: "Advanced social media management app for scheduling posts, reels, and stories. Features built-in photo/video editing powered by FFmpeg.",
+            img: project11,
+            tech: ["Flutter", "FFmpeg", "GetX", "Rest API", "Socket"],
+            github: "https://github.com/Mosaidur/clip_frame.git",
             live: "#",
         },
         {
@@ -177,8 +196,12 @@ const Projects = () => {
 
                                 {/* Buttons */}
                                 <div className="flex items-center justify-between gap-4 mt-auto">
-                                    <a href={p.live} className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 px-4 py-3 rounded-xl text-white font-semibold text-sm hover:shadow-lg hover:shadow-purple-500/25 transition-all active:scale-95">
-                                        <FaExternalLinkAlt /> Live Demo
+                                    <a
+                                        href={p.live}
+                                        onClick={(e) => handleLiveClick(e, p.live)}
+                                        className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 px-4 py-3 rounded-xl text-white font-semibold text-sm hover:shadow-lg hover:shadow-purple-500/25 transition-all active:scale-95"
+                                    >
+                                        <FaExternalLinkAlt /> Live
                                     </a>
                                     <a href={p.github} className="flex-1 flex items-center justify-center gap-2 bg-white/5 border border-white/10 px-4 py-3 rounded-xl text-white font-semibold text-sm hover:bg-white/10 hover:border-white/20 transition-all active:scale-95">
                                         <FaGithub className="text-lg" /> Source
@@ -190,6 +213,28 @@ const Projects = () => {
                             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                         </div>
                     ))}
+                </div>
+
+                {/* Toast Notification */}
+                <div className={`fixed bottom-10 left-1/2 -translate-x-1/2 lg:left-auto lg:right-10 lg:translate-x-0 z-[100] transition-all duration-500 transform ${showToast ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'}`}>
+                    <div className="bg-[#030014]/90 backdrop-blur-xl border border-purple-500/30 px-6 py-4 rounded-2xl shadow-[0_0_50px_rgba(168,85,247,0.3)] flex items-center gap-5 min-w-[320px]">
+                        <div className="relative">
+                            <div className="absolute inset-0 bg-purple-500 blur-lg opacity-40 animate-pulse"></div>
+                            <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center border border-white/20 shadow-inner">
+                                <FaExternalLinkAlt className="text-white text-xl" />
+                            </div>
+                        </div>
+                        <div className="flex flex-col">
+                            <h4 className="text-white font-bold text-base tracking-tight">Deployment in Progress</h4>
+                            <p className="text-gray-400 text-xs mt-0.5 font-medium">Coming soon to App Store & Play Store!</p>
+                        </div>
+                        <button
+                            onClick={() => setShowToast(false)}
+                            className="ml-auto text-gray-500 hover:text-white transition-colors"
+                        >
+                            ✕
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
