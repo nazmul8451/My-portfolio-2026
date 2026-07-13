@@ -1,20 +1,12 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import project1 from '../../../assets/Cover.png'
-import project2 from '../../../assets/Mobile UI Kit_ Ecommerce (Community) (Copy).png'
-import project3 from '../../../assets/Blue Gradient Linktree Background.png'
-import project4 from '../../../assets/Figue.io - Typing Animation in Chat.png'
-import project5 from '../../../assets/second shot v2.png';
-import project6 from '../../../assets/sqlite_project.png';
-import project7 from '../../../assets/Dark Blossom.png';
-import project8 from '../../../assets/photopia_cover.png';
-import project9 from '../../../assets/Frame 34.png';
-import project10 from '../../../assets/Desktop - 2.png';
-import project11 from '../../../assets/Screenshot 2026-04-21 021157.png';
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { projects } from "@/app/lib/data/projects";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -58,100 +50,6 @@ const Projects = () => {
 
         return () => ctx.revert();
     }, []);
-
-    const projects = [
-        {
-            title: "Pokémon Card Scanner",
-            category: "AI & Collector Tool",
-            desc: "Advanced AI-powered scanner that identifies Pokémon cards instantly and tracks real-time market values, collection trends, and price history.",
-            img: project9,
-            tech: ["Flutter", "AI / ML", "Rest API", "Socket", "Push Notification"],
-            github: "https://github.com/nazmul8451/PokemonCardScanner.git",
-            live: "#",
-        },
-        {
-            title: "Djarna - Marketplace",
-            category: "E-Commerce",
-            desc: "A comprehensive buy-and-sell marketplace platform inspired by Bikroy.com, allowing users to list products for sale and make secure purchases seamlessly.",
-            img: project10,
-            tech: ["Flutter", "Rest API", "GetX", "Socket", "Push Notification"],
-            github: "https://github.com/nazmul8451/Djarna.git",
-            live: "#",
-        },
-        {
-            title: "Event Discovery App",
-            category: "Mobile App",
-            desc: "A feature-rich event discovery app with real-time maps, category filtering, and social engagement tools.",
-            img: project7,
-            tech: ["Flutter", "Dart", "Google Maps", "Firebase"],
-            github: "https://github.com/nazmul8451/Event-Discovery-App.git",
-            live: "#",
-        },
-        {
-            title: "Photopia - Moment Marketplace",
-            category: "Platform",
-            desc: "A dedicated marketplace for photographers to showcase and sell their captured moments.",
-            img: project8,
-            tech: ["Flutter", "Firebase", "Stripe"],
-            github: "https://github.com/nazmul8451/Photopia-MomentMarketplace.git",
-            live: "#",
-        },
-        {
-            title: "ClipFrame - Social Scheduler",
-            category: "Social Media / Utility",
-            desc: "Advanced social media management app for scheduling posts, reels, and stories. Features built-in photo/video editing powered by FFmpeg.",
-            img: project11,
-            tech: ["Flutter", "FFmpeg", "GetX", "Rest API", "Socket"],
-            github: "https://github.com/Mosaidur/clip_frame.git",
-            live: "#",
-        },
-        {
-            title: "Online Grocery App",
-            category: "E-Commerce",
-            desc: "A modern grocery delivery app featuring a smooth browsing experience, cart management, and order tracking.",
-            img: project2,
-            tech: ["Flutter", "Provider", "Rest API"],
-            github: "https://github.com/nazmul8451/Online-Grocary-App",
-            live: "#",
-        },
-        {
-            title: "Task Manager Pro",
-            category: "Productivity",
-            desc: "Efficient task management solution with GetX state management for real-time updates and seamless UX.",
-            img: project3,
-            tech: ["Flutter", "GetX", "Rest API"],
-            github: "https://github.com/nazmul8451/Task-Manager",
-            live: "#",
-        },
-        {
-            title: "AI Chat Bot",
-            category: "Artificial Intelligence",
-            desc: "Smart conversational AI interface with typing animations and real-time response handling.",
-            img: project4,
-            tech: ["Flutter", "OpenAI API", "Animation"],
-            github: "https://github.com/nazmul8451/Task-Manager", // Placeholder link
-            live: "#",
-        },
-        {
-            title: "Meditation App",
-            category: "Health & Wellness",
-            desc: "Calming meditation app with audio playback, minimalist UI, and progress tracking features.",
-            img: project5,
-            tech: ["Flutter", "Audio Player", "Riverpod"],
-            github: "https://github.com/nazmul8451/Meditation-app.git",
-            live: "#",
-        },
-        {
-            title: "SQLite CRUD App",
-            category: "Database Tool",
-            desc: "Robust local database management app demonstrating CRUD operations with offline retention.",
-            img: project6,
-            tech: ["Flutter", "SQLite", "Local Storage"],
-            github: "https://github.com/nazmul8451/SQLite-CRUD-APP.git",
-            live: "#",
-        },
-
-    ];
 
     return (
         <div ref={sectionRef} id="project" className="w-full relative py-20 lg:py-32 overflow-hidden">
@@ -206,17 +104,30 @@ const Projects = () => {
                                 </div>
 
                                 {/* Buttons */}
-                                <div className="flex items-center justify-between gap-4 mt-auto">
-                                    <a
-                                        href={p.live}
-                                        onClick={(e) => handleLiveClick(e, p.live)}
-                                        className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 px-4 py-3 rounded-xl text-white font-semibold text-sm hover:shadow-lg hover:shadow-purple-500/25 transition-all active:scale-95"
+                                <div className="flex flex-col gap-3 mt-auto">
+                                    <Link
+                                        href={`/projects/${p.slug}`}
+                                        className="w-full flex items-center justify-center gap-2 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/20 hover:border-purple-500/40 px-4 py-2.5 rounded-xl text-purple-300 hover:text-white font-semibold text-sm transition-all duration-300 text-center"
                                     >
-                                        <FaExternalLinkAlt /> Live
-                                    </a>
-                                    <a href={p.github} className="flex-1 flex items-center justify-center gap-2 bg-white/5 border border-white/10 px-4 py-3 rounded-xl text-white font-semibold text-sm hover:bg-white/10 hover:border-white/20 transition-all active:scale-95">
-                                        <FaGithub className="text-lg" /> Source
-                                    </a>
+                                        View Details
+                                    </Link>
+                                    <div className="flex items-center justify-between gap-4">
+                                        <a
+                                            href={p.live}
+                                            onClick={(e) => handleLiveClick(e, p.live)}
+                                            className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 px-4 py-2.5 rounded-xl text-white font-semibold text-sm hover:shadow-lg hover:shadow-purple-500/25 transition-all active:scale-95 text-center"
+                                        >
+                                            <FaExternalLinkAlt /> Live
+                                        </a>
+                                        <a 
+                                            href={p.github} 
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex-1 flex items-center justify-center gap-2 bg-white/5 border border-white/10 px-4 py-2.5 rounded-xl text-white font-semibold text-sm hover:bg-white/10 hover:border-white/20 transition-all active:scale-95 text-center"
+                                        >
+                                            <FaGithub className="text-lg" /> Source
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
 

@@ -4,12 +4,16 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { FiDownload } from "react-icons/fi";
 import logo from '../../../assets/Letter-R-Logo-Template-Design-icon-Graphics-9132151-1-1-580x387-removebg-preview.png'
 import Image from "next/image";
+import Link from "next/link";
 import { context } from "@/context/ContextProvider";
 import { motion, AnimatePresence } from "motion/react";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const pathname = usePathname();
+    const isHome = pathname === "/";
 
     const ans = useContext(context)
 
@@ -31,17 +35,21 @@ const Navbar = () => {
             <nav className="max-w-[1400px] mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
 
                 <div className="text-2xl font-bold tracking-wide">
-                    <a href="#home">
+                    <Link href={isHome ? "#home" : "/"}>
                         <Image src={logo} width={80} height={70} className="w-[60px] sm:w-[70px] object-contain hover:scale-105 transition-transform duration-300" alt="logo"></Image>
-                    </a>
+                    </Link>
                 </div>
 
                 <ul className="hidden md:flex items-center gap-8 text-lg font-medium text-gray-300">
                     {["About", "Skill", "Experience", "Project", "Contact"].map((item) => (
-                        <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-purple-400 duration-300 cursor-pointer transition-colors relative group">
+                        <Link 
+                            key={item} 
+                            href={isHome ? `#${item.toLowerCase()}` : `/#${item.toLowerCase()}`} 
+                            className="hover:text-purple-400 duration-300 cursor-pointer transition-colors relative group"
+                        >
                             {item}
                             <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
-                        </a>
+                        </Link>
                     ))}
 
                     <a href="https://drive.google.com/file/d/1tSDtNTtiAnwEgDxgW8qF3zcd5MqueDav/view?usp=sharing" target="_blank">
@@ -69,9 +77,14 @@ const Navbar = () => {
                             className="absolute top-[80px] left-0 w-full bg-[#1A0B2E]/95 backdrop-blur-xl flex flex-col items-center gap-8 py-10 md:hidden shadow-2xl border-b border-white/10"
                         >
                             {["About", "Skill", "Experience", "Project", "Contact"].map((item) => (
-                                <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setOpen(false)} className="text-xl font-medium text-gray-200 hover:text-purple-400 duration-200 cursor-pointer">
+                                <Link 
+                                    key={item} 
+                                    href={isHome ? `#${item.toLowerCase()}` : `/#${item.toLowerCase()}`} 
+                                    onClick={() => setOpen(false)} 
+                                    className="text-xl font-medium text-gray-200 hover:text-purple-400 duration-200 cursor-pointer"
+                                >
                                     {item}
-                                </a>
+                                </Link>
                             ))}
                             <a href="https://drive.google.com/file/d/1tSDtNTtiAnwEgDxgW8qF3zcd5MqueDav/view?usp=sharing" target="_blank" className="w-full flex justify-center">
                                 <button className="flex items-center gap-2 bg-purple-600 px-8 py-3 rounded-full font-bold shadow-lg text-white">
