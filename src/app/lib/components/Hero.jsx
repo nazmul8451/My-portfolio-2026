@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { FaFacebookF, FaGithub, FaLinkedinIn } from "react-icons/fa";
 import TextType from '../../../components/TextType';
 import Hero3D from './Hero3D';
+import LightRays from '@/components/LightRays';
 import gsap from 'gsap';
 import rimonImage from '../../../assets/rimon.png';
 
@@ -49,6 +50,19 @@ const Hero = () => {
 
             {/* --- LIVING BACKGROUND --- */}
             <div className="absolute inset-0 -z-20 pointer-events-none w-full h-full">
+                <LightRays
+                    raysOrigin="top-right"
+                    raysColor="#a855f7"
+                    raysSpeed={1.0}
+                    lightSpread={1.5}
+                    rayLength={1.6}
+                    pulsating={true}
+                    fadeDistance={1.2}
+                    followMouse={true}
+                    mouseInfluence={0.08}
+                    distortion={0.25}
+                    className="absolute inset-0 w-full h-full opacity-35"
+                />
                 <div className="hero-blob absolute -top-[20%] -left-[10%] w-[800px] h-[800px] bg-purple-900/30 rounded-full blur-[120px] mix-blend-screen opacity-40 will-change-transform"></div>
                 <div className="hero-blob absolute top-[30%] right-[-10%] w-[600px] h-[600px] bg-cyan-900/20 rounded-full blur-[100px] mix-blend-screen animate-pulse-slow will-change-transform" />
                 <div className="hero-blob absolute -bottom-[20%] left-[20%] w-[600px] h-[600px] bg-indigo-900/20 rounded-full blur-[120px] mix-blend-screen will-change-transform" />
@@ -116,35 +130,13 @@ const Hero = () => {
                     </div>
                 </div>
 
-                {/* Right Side: User Image */}
-                <div className="flex justify-center lg:justify-end order-1 lg:order-2 relative group pl-0 lg:pl-10">
+                {/* Right Side: 3D Interactive Canvas */}
+                <div className="flex justify-center lg:justify-end order-1 lg:order-2 relative group w-full h-[500px] lg:h-[650px] items-center">
                     {/* Glowing Background Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/30 to-cyan-500/30 blur-[80px] rounded-full scale-90 group-hover:scale-100 transition-transform duration-700"></div>
+                    <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/10 to-cyan-500/10 blur-[80px] rounded-full scale-90 group-hover:scale-100 transition-transform duration-700 pointer-events-none"></div>
 
-                    {/* Image Container with premium border */}
-                    <div className="relative w-[320px] h-[320px] sm:w-[450px] sm:h-[450px] lg:w-[500px] lg:h-[500px] rounded-full p-3 bg-gradient-to-br from-white/10 to-white/5 border border-white/10 backdrop-blur-sm shadow-[0_0_40px_rgba(168,85,247,0.3)] group-hover:shadow-[0_0_70px_rgba(168,85,247,0.5)] transition-all duration-500">
-                        {/* Inner Ring */}
-                        <div className="w-full h-full rounded-full overflow-hidden relative border-[6px] border-purple-500/20 group-hover:border-purple-500/50 transition-colors duration-500">
-                            <Image
-                                src={rimonImage}
-                                alt="Rimon Islam"
-                                fill
-                                className="object-cover scale-110 group-hover:scale-105 transition-transform duration-700 ease-out"
-                                priority
-                            />
-                            {/* Overlay Gradient for better blending */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 via-transparent to-transparent opacity-50"></div>
-                        </div>
-
-                        {/* Floating Tech Badge */}
-                        <div className="absolute bottom-12 left-0 lg:-left-4 bg-[#0a0213]/90 backdrop-blur-xl border border-purple-500/30 px-5 py-2.5 rounded-2xl flex items-center gap-3 shadow-2xl animate-bounce-slow">
-                            <div className="relative">
-                                <div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></div>
-                                <div className="absolute inset-0 w-2.5 h-2.5 rounded-full bg-green-500 animate-ping opacity-75"></div>
-                            </div>
-                            <span className="text-sm text-gray-200 font-medium tracking-wide">Open to Work</span>
-                        </div>
-                    </div>
+                    {/* Three.js 3D Hero System */}
+                    <Hero3D />
                 </div>
 
             </div>

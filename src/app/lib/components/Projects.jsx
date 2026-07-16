@@ -15,6 +15,9 @@ const Projects = () => {
     const titleRef = useRef(null);
     const [showToast, setShowToast] = useState(false);
 
+    const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
+    const displayProjects = featuredProjects.length > 0 ? featuredProjects : projects.slice(0, 3);
+
     const handleLiveClick = (e, live) => {
         if (live === "#") {
             e.preventDefault();
@@ -66,8 +69,8 @@ const Projects = () => {
                 </div>
 
                 {/* Swiper Slider */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {projects.map((p, i) => (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in">
+                    {displayProjects.map((p, i) => (
                         <div key={i} className="project-card group relative rounded-[30px] bg-white/5 border border-white/10 overflow-hidden hover:border-purple-500/50 transition-all duration-500 hover:shadow-[0_0_50px_rgba(168,85,247,0.15)] flex flex-col h-full min-h-[500px]">
 
                             {/* Image Container with Overlay */}
@@ -135,6 +138,22 @@ const Projects = () => {
                             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                         </div>
                     ))}
+                </div>
+
+                {/* See More Projects Button */}
+                <div className="mt-16 text-center">
+                    <Link
+                        href="/projects"
+                        className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-[#0a0213]/40 hover:bg-purple-500/10 border border-purple-500/30 hover:border-purple-400/70 text-purple-300 hover:text-white font-bold text-base tracking-wide hover:shadow-[0_0_30px_rgba(168,85,247,0.25)] transition-all duration-300 active:scale-95 group relative overflow-hidden"
+                    >
+                        <span className="relative z-10 flex items-center gap-2">
+                            See More Projects
+                            <span className="transform group-hover:translate-x-1 transition-transform duration-300">
+                                ➔
+                            </span>
+                        </span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-transparent to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                    </Link>
                 </div>
 
                 {/* Toast Notification */}
